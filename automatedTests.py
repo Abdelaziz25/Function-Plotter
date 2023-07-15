@@ -1,25 +1,35 @@
 import pytest
-from UserInput import UserInput
+from PySide2 import QtCore
+from PySide2.QtTest import QTest
+from PySide2.QtCore import Qt
 from UserInputValidator import InputValidator
+from PySide2.QtWidgets import QApplication
+from functionplot import FunctionPlotterApp
 
+@pytest.fixture(scope="module")
+def app():
+    qapp = QApplication([])
+    yield qapp
+    qapp.quit()
 
-def test_get_function(monkeypatch):
-    # Simulate user input for the function
-    monkeypatch.setattr('builtins.input', lambda _: '2*x^2 + 3')
+def test_plot_function(app):
+    function_plotter_app = FunctionPlotterApp()
+    function_plotter_app.show()
 
-    # Call the get_function method
-    function = UserInput.get_function()
+    # Simulate user input
+    function_plotter_app.function_input.setText("x**2 + 3*x - 5")
+    function_plotter_app.min_input.setText("-10")
+    function_plotter_app.max_input.setText("10")
 
-    # Check if the returned function matches the expected value
-    assert function == '2*x^2 + 3'
+    # Click the "Plot Function" button
+    QTest.mouseClick(function_plotter_app.plot_button, Qt.LeftButton)
 
-    monkeypatch.setattr('builtins.input', lambda _: '2*x%2 + 3')
+    # Get the plotted axes
+    axes = function_plotter_app.canvas.figure.get_axes()
 
-    # Call the get_function method
-    function = UserInput.get_function()
-
-    # Check if the returned function matches the expected value
-    assert function == False
+    # Assert that the plot is displayed correctly
+    assert len(axes) == 1
+    assert axes[0].get_title() == "Function Plot"
 
 
 def test_validate_min_max():

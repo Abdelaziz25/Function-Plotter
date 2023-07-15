@@ -1,15 +1,12 @@
-from FunctionEvaluator import FunctionEvaluator
-from UserInput import UserInput
-
+import sys
+from PySide2.QtWidgets import QApplication
+from functionplot import FunctionPlotterApp
 
 if __name__ == '__main__':
-    user_input = UserInput()
-    function_evaluator = FunctionEvaluator()
-    function = user_input.get_function()
-    while not function:
-        function = user_input.get_function()
-
-    min_value, max_value = user_input.get_min_max()
+    app = QApplication(sys.argv)
+    window = FunctionPlotterApp()
+    window.show()
+    sys.exit(app.exec_())
 
 
 
