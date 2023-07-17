@@ -16,7 +16,7 @@ class FunctionPlotterApp(QMainWindow):
 
         self.layout = QVBoxLayout(self.central_widget)
 
-        self.function_label = QLabel("Enter function (e.g., 'x^2 + 3*x - 5'): ")
+        self.function_label = QLabel("Enter function (e.g., x^2 + 3*x - 5): ")
         self.function_input = QLineEdit()
         self.min_label = QLabel("Enter min value: ")
         self.min_input = QLineEdit()
@@ -43,8 +43,18 @@ class FunctionPlotterApp(QMainWindow):
         max_value_str = self.max_input.text()
 
         # Validate function and min/max values
-        if not InputValidator.validate_function(function_str) or \
-           not InputValidator.validate_min_max(float(min_value_str), float(max_value_str)):
+        if not InputValidator.validate_function(function_str):
+            self.show_error_message("Invalid characters in the function.")
+            return
+        try:
+            min_value = float(min_value_str)
+            max_value = float(max_value_str)
+        except ValueError:
+            self.show_error_message("Invalid min or max value. Please enter numeric values.")
+            return
+
+        if not InputValidator.validate_min_max(min_value, max_value):
+            self.show_error_message("Invalid min or max value. Minimum value should be smaller than the maximum value.")
             return
         function_str = function_str.replace('^', '**')
         function_str = function_str.replace('.', '')
@@ -64,3 +74,10 @@ class FunctionPlotterApp(QMainWindow):
 
         # Draw the new plot
         self.canvas.draw()
+
+    def show_error_message(self, message):
+        error_box = QMessageBox()
+        error_box.setIcon(QMessageBox.Critical)
+        error_box.setWindowTitle("Error")
+        error_box.setText(message)
+        error_box.exec_()
