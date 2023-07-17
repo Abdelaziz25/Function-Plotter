@@ -58,3 +58,6 @@ an Iamge for app with incorrect input for max and min value:
 an Image for app with incorrect input for max and min values :
 ![image](https://github.com/Abdelaziz25/Function-Plotter/assets/90736727/eaf2ac67-b712-47c1-a89a-3e17f9642a66)
 
+an Image for the app when enter empty input :
+![image](https://github.com/Abdelaziz25/Function-Plotter/assets/90736727/fc8cf63c-2910-4c0f-8d1f-8aa93f538a73)
+
