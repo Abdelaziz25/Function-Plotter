@@ -45,3 +45,19 @@ UserInputValidator.py: This file contains the InputValidator class, which provid
 # Automated Testing:
 The code also includes a set of automated tests to ensure the proper functionality of the application. These tests use the PyTest framework.
 
+# Snapshots:
+an Iamge for app with correct input: 
+![image](https://github.com/Abdelaziz25/Function-Plotter/assets/90736727/4397f971-5eac-4ad9-9223-c3f5984d654b)
+
+an Image for app with incorrect input for function:
+![image](https://github.com/Abdelaziz25/Function-Plotter/assets/90736727/24ccd867-d215-4ca0-9425-67f70862ebb1)
+
+an Iamge for app with incorrect input for max and min value:
+![image](https://github.com/Abdelaziz25/Function-Plotter/assets/90736727/a0698168-11ad-48ee-bb15-807b9e89fae5)
+
+an Image for app with incorrect input for max and min values :
+![image](https://github.com/Abdelaziz25/Function-Plotter/assets/90736727/eaf2ac67-b712-47c1-a89a-3e17f9642a66)
+
+an Image for the app when enter empty input :
+![image](https://github.com/Abdelaziz25/Function-Plotter/assets/90736727/fc8cf63c-2910-4c0f-8d1f-8aa93f538a73)
+
