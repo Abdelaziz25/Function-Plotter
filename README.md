@@ -55,4 +55,6 @@ an Image for app with incorrect input for function:
 an Iamge for app with incorrect input for max and min value:
 ![image](https://github.com/Abdelaziz25/Function-Plotter/assets/90736727/a0698168-11ad-48ee-bb15-807b9e89fae5)
 
+an Image for app with incorrect input for max and min values :
+![image](https://github.com/Abdelaziz25/Function-Plotter/assets/90736727/eaf2ac67-b712-47c1-a89a-3e17f9642a66)
 
