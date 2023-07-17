@@ -52,4 +52,7 @@ an Iamge for app with correct input:
 an Image for app with incorrect input for function:
 ![image](https://github.com/Abdelaziz25/Function-Plotter/assets/90736727/24ccd867-d215-4ca0-9425-67f70862ebb1)
 
+an Iamge for app with incorrect input for max and min value:
+![image](https://github.com/Abdelaziz25/Function-Plotter/assets/90736727/a0698168-11ad-48ee-bb15-807b9e89fae5)
+
 
