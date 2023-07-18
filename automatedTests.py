@@ -2,7 +2,7 @@ import pytest
 from PySide2.QtTest import QTest
 from PySide2.QtCore import Qt
 from UserInputValidator import InputValidator
-from PySide2.QtWidgets import QApplication,QMessageBox
+from PySide2.QtWidgets import QApplication
 from functionplot import FunctionPlotterApp
 
 @pytest.fixture(scope="module")
@@ -11,19 +11,33 @@ def app():
     yield qapp
     qapp.quit()
 
-def test_plot_function(app):
+def test_plot_Invalid_function(app):
     function_plotter_app = FunctionPlotterApp()
     function_plotter_app.show()
+    # Test 1: Invalid function
+    function_plotter_app.function_input.setText("x^2 + 3*x - $")  # Invalid character '^'
+    function_plotter_app.min_input.setText("-10")
+    function_plotter_app.max_input.setText("10")
+    QTest.mouseClick(function_plotter_app.plot_button, Qt.LeftButton)
+    assert len(function_plotter_app.canvas.figure.get_axes()) == 0  # No axes should be created
 
+    # Test 2: Invalid range (minimum value greater than maximum value)
+    function_plotter_app.function_input.setText("x^2 + 3*x - 5")
+    function_plotter_app.min_input.setText("10")
+    function_plotter_app.max_input.setText("-10")  # Invalid range
+    QTest.mouseClick(function_plotter_app.plot_button, Qt.LeftButton)
+    assert len(function_plotter_app.canvas.figure.get_axes()) == 0  # No axes should be created
+
+def test_plot_valid_function(app):
+    function_plotter_app = FunctionPlotterApp()
+    function_plotter_app.show()
     # Test 1: Valid function and range
-    function_plotter_app.function_input.setText("x**2 + 3*x - 5")
+    function_plotter_app.function_input.setText("x^2 + 3*x - 5")
     function_plotter_app.min_input.setText("-10")
     function_plotter_app.max_input.setText("10")
     QTest.mouseClick(function_plotter_app.plot_button, Qt.LeftButton)
     assert len(function_plotter_app.canvas.figure.get_axes()) == 1
     assert function_plotter_app.canvas.figure.get_axes()[0].get_title() == "Function Plot"
-
-
 
 
 def test_validate_min_max():
